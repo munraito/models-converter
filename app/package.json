@@ -1,8 +1,14 @@
 {
-  "name" : "models-converter",
-  "version" : "0.1.0",
-  "main" : "main.js",
+  "name": "models-converter",
+  "version": "0.1.0",
+  "main": "main.js",
   "scripts": {
     "start": "electron ."
+  },
+  "devDependencies": {
+    "dropzone": "^4.3.0"
+  },
+  "dependencies": {
+    "dropzone": "^4.3.0"
   }
 }

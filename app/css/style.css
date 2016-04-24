@@ -1,0 +1,32 @@
+body {
+    /* background: url(img/img-noise-361x370.png); *//* IE10+ */
+    background-image: -ms-linear-gradient(bottom left, #FFFFFF 0%, #3366FF 100%);
+
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(bottom left, #FFFFFF 0%, #3366FF 100%);
+
+    /* Opera */
+    background-image: -o-linear-gradient(bottom left, #FFFFFF 0%, #3366FF 100%);
+
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0, #FFFFFF), color-stop(100, #3366FF));
+
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(bottom left, #FFFFFF 0%, #3366FF 100%);
+
+    /* W3C Markup */
+    background-image: linear-gradient(to top right, #FFFFFF 0%, #3366FF 100%);
+
+}
+.convert {
+    width: 400px;
+    height: 400px;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
