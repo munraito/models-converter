@@ -4,17 +4,23 @@
 var remote = require('remote');
 var dialog = remote.require('dialog');
 var fs = require('fs');
-var dropzone = document.getElementById('dropzone');
+var wrapper = document.getElementById('wrapper');
 
 document.addEventListener('dragover',function(event){
     event.preventDefault();
     return false;
 },false);
 
+document.addEventListener('dragenter', function (event) {
+    event.preventDefault();
+    wrapper.classList.add('dragged-over');
+});
+
 document.addEventListener('drop',function(event){
     event.preventDefault();
     var filePath = event.dataTransfer.files[0].path;
-    parseFile(filePath);
+    if (/\.lib$/.test(filePath)) parseFile(filePath);
+    else alert('Incorrect file extension!');
     return false;
 },false);
 
@@ -42,7 +48,7 @@ function openFile() {
 function parseFile(fileName) {
     fs.readFile(fileName, 'utf-8', function(err, data) {
         //////////////// LIB FILE PARSING ///////////////////
-        if (/\.lib/.test(fileName)) {
+        if (/\.lib$/.test(fileName)) {
             data = data.replace(/\(([\s\S]*?)\)/g, function (str) {return str.toLowerCase();});
             data = data.replace(/^\*/gm, '//');
             if(!(/simulator lang=spectre insensitive=yes/.test(data))) {
@@ -90,7 +96,7 @@ function parseFile(fileName) {
             }
 
         }
-        document.getElementById('editor').value = data;
+        //document.getElementById('editor').value = data;
         saveFile();
     });
 }
@@ -102,7 +108,7 @@ function saveFile () {
     ]}, function (fileName) {
         console.log(fileName);
         if (fileName === undefined) return;
-        fs.writeFile(fileName, document.getElementById("editor").value, function (err) {
+        fs.writeFile(fileName, data, function (err) {
             if (err == undefined) {
                 dialog.showMessageBox({ message: "The file has been saved!",
                     buttons: ["OK"] });
